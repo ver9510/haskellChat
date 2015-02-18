@@ -15,8 +15,7 @@ sockHandler sock = do
 	putStrLn "Hi 3"
 	(handIO, _, _) <- accept sock
 	putStrLn "Connected!"
-	listofHandlers ++ [handIO]
-	map (forkIO command) handIO
+	forkIO $ command handIO
 	sockHandler sock
 
 command handle= do
